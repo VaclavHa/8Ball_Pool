@@ -16,7 +16,7 @@ def place_ball(table: list, x: int, y: int):
     if x >= 0 and y >= 0 and x < len(table[0]) and y < len(table):  # check if coordinates are within the table
         table[y][x] = "O"
 
-        print("\nBall has been placed \n")
+        print(f"\nBall has been placed on Row: {y} Column: {x} \n")
         for row in table:
             print(' '.join(row))
         print("\n")
@@ -48,11 +48,7 @@ def move_ball(placed_ball: list, start: tuple, direction: str, steps: int):
         print(f"Step: {step}")
 
         if step != 0:
-            placed_ball[y][x] = str(step)
-
-        for row in placed_ball:
-            print(' '.join(row))
-        print("\n")
+            placed_ball[y][x] = str(step)  # change new step in the table to number of step
 
         next_x = x + dx
         next_y = y + dy
@@ -65,7 +61,11 @@ def move_ball(placed_ball: list, start: tuple, direction: str, steps: int):
             dy = -dy
             next_y = y + dy
 
-        x, y = next_x, next_y  # new/last position of the ball
+        for row in placed_ball:
+            print(' '.join(row))  # print table for each new step
+        print("\n")
+
+        x, y = next_x, next_y  # final position of the ball
 
     return print(f"\nFinal spot = Column: {x}, Row: {y}")
 
